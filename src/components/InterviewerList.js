@@ -1,4 +1,5 @@
 import React from "react";
+import "components/InterviewerList.scss";
 
 const InterviewerList = (props) => {
   return (
