@@ -4,7 +4,7 @@ import DayListItem from "./DayListItem";
 const DayList = (props) => {
   const { days, day, setDay } = props;
 
-  const dayListArray = days.map((x) => {
+  const dayListItemArr = days.map((x) => {
     return (
       <DayListItem
         key={x.id}
@@ -16,7 +16,7 @@ const DayList = (props) => {
     );
   });
 
-  return <ul>{dayListArray}</ul>;
+  return <ul>{dayListItemArr}</ul>;
 };
 
 export default DayList;
