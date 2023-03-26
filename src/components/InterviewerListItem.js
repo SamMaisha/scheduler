@@ -16,7 +16,7 @@ const InterviewerListItem = (props) => {
         src={avatar}
         alt="Sylvia Palmer"
       />
-      {name}
+      {selected ? name : ""}
     </li>
   );
 };
