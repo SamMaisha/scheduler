@@ -1,4 +1,5 @@
 import React from "react";
+import "components/InterviewerListItem.scss";
 
 const InterviewerListItem = (props) => {
   const { id, name, avatar } = props;
@@ -14,3 +15,5 @@ const InterviewerListItem = (props) => {
     </li>
   );
 };
+
+export default InterviewerListItem;
