@@ -27,6 +27,8 @@ storiesOf("Button", module)
     </Button>
   ));
 
+// Test for DayListItem
+
 storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -35,7 +37,11 @@ storiesOf("DayListItem", module)
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
+    <DayListItem
+      name="Tuesday"
+      setDay={() => action("setDay")(days.name)}
+      spots={5}
+    />
   ));
 
 // Test for DayList
