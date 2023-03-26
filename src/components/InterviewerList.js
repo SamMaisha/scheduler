@@ -13,7 +13,7 @@ const InterviewerList = (props) => {
         name={x.name}
         avatar={x.avatar}
         selected={x.id === interviewer}
-        setInterviewer={setInterviewer}
+        setInterviewer={(event) => setInterviewer(x.id)}
       />
     );
   });
