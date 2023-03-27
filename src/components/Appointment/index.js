@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Show from "./Show";
 import Confirm from "./Confirm";
 import Status from "./Status";
+import Error from "./Error";
 
 const Appointment = (props) => {
   return <article className="appointment"></article>;
