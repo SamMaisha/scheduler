@@ -21,7 +21,9 @@ const Form = (props) => {
       />
     </form>
     <InterviewerList 
-      /* your code goes here */
+      interviewers={interviewers}
+      value={interviewer}
+      onChange={setInterviewer}
     />
   </section>
   <section className="appointment__card-right">
