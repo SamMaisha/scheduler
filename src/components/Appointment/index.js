@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "components/Appointment/styles.scss";
 
 import Header from "./Header";
@@ -10,7 +10,13 @@ import Error from "./Error";
 import Form from "./Form";
 
 const Appointment = (props) => {
-  return <article className="appointment"></article>;
+  const { time, interview } = props;
+  return (
+    <article className="appointment">
+      <Header time={time} />
+      {interview ? <Show /> : <Empty />}
+    </article>
+  );
 };
 
 export default Appointment;
