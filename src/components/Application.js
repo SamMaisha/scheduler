@@ -13,6 +13,8 @@ export default function Application(props) {
     days: [],
     appointments: {},
   });
+  // aray to hold list of appointments for a day
+  const dailyAppointments = [];
 
   const setDay = (day) => setState({ ...state, day });
   const setDays = (days) => setState((prev) => ({ ...prev, days }));
@@ -23,7 +25,7 @@ export default function Application(props) {
     });
   }, []);
 
-  const appointmentArr = Object.values(appointments).map((appointment) => {
+  const appointmentArr = Object.values(dailyAppointments).map((appointment) => {
     return <Appointment key={appointment.id} {...appointment} />;
   });
 
