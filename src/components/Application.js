@@ -35,11 +35,20 @@ export default function Application(props) {
     });
   }, []);
 
+  console.log(state.interviewers);
   // get appointments for a day
   dailyAppointments = getAppointmentsForDay(state, state.day);
 
   const appointmentArr = Object.values(dailyAppointments).map((appointment) => {
-    return <Appointment key={appointment.id} {...appointment} />;
+    const interview = getInterview(state, appointment.interview);
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
   });
 
   return (
