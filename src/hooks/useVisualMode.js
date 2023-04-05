@@ -10,12 +10,14 @@ export function useVisualMode(initial) {
   }
 
   function back() {
-    const newHistory = [...history.slice(0, history.length - 1)];
-    const prevMode = newHistory[newHistory.length - 1];
+    if (history.length > 1) {
+      const newHistory = [...history.slice(0, history.length - 1)];
+      const prevMode = newHistory[newHistory.length - 1];
 
-    setHistory(newHistory);
+      setHistory(newHistory);
 
-    setMode(prevMode);
+      setMode(prevMode);
+    }
   }
 
   return { mode, transition, back };
