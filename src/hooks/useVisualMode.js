@@ -4,9 +4,15 @@ export function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
-  function transition(next) {
+  function transition(next, replace = false) {
     setMode(next);
-    setHistory((prev) => [...prev, next]);
+
+    if (replace) {
+      const newHistory = history.filter((word) => word !== mode);
+      setHistory([...newHistory, next]);
+    } else {
+      setHistory((prev) => [...prev, next]);
+    }
   }
 
   function back() {
