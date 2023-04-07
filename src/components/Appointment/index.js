@@ -25,6 +25,13 @@ const Appointment = (props) => {
           onDelete={() => console.log("Clicked Delete")}
         />
       )}
+      {mode === CREATE && (
+        <Form
+          interviewers={[]}
+          onSave={() => console.log("Clicked onSave")}
+          onCancel={() => console.log("Clicked onCancel")}
+        />
+      )}
     </article>
   );
 };
