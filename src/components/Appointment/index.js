@@ -4,6 +4,7 @@ import { useVisualMode } from "hooks/useVisualMode";
 import Header from "./Header";
 import Empty from "./Empty";
 import Show from "./Show";
+import Form from "./Form";
 
 const Appointment = (props) => {
   const { time, interview } = props;
@@ -29,7 +30,7 @@ const Appointment = (props) => {
         <Form
           interviewers={[]}
           onSave={() => console.log("Clicked onSave")}
-          onCancel={() => console.log("Clicked onCancel")}
+          onCancel={() => back()}
         />
       )}
     </article>
