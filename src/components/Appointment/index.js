@@ -10,12 +10,13 @@ const Appointment = (props) => {
   // modes
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
+  const CREATE = "CREATE";
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   return (
     <article className="appointment">
       <Header time={time} />
-      {mode === EMPTY && <Empty onAdd={() => console.log("Clicked onAdd")} />}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           student={interview.student}
