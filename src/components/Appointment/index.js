@@ -7,16 +7,22 @@ import Show from "./Show";
 
 const Appointment = (props) => {
   const { time, interview } = props;
-
+  // modes
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
+  const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+
   return (
     <article className="appointment">
       <Header time={time} />
-      {interview ? (
-        <Show student={interview.student} interviewer={interview.interviewer} />
-      ) : (
-        <Empty />
+      {mode === EMPTY && <Empty onAdd={() => console.log("Clicked onAdd")} />}
+      {mode === SHOW && (
+        <Show
+          student={interview.student}
+          interviewer={interview.interviewer}
+          onEdit={() => console.log("Clicked Edit")}
+          onDelete={() => console.log("Clicked Delete")}
+        />
       )}
     </article>
   );
