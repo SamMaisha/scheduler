@@ -8,11 +8,18 @@ import Form from "./Form";
 
 const Appointment = (props) => {
   const { time, interview, interviewers } = props;
-  // modes
+  // modes and custom hook
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer,
+    };
+  }
 
   return (
     <article className="appointment">
@@ -29,7 +36,7 @@ const Appointment = (props) => {
       {mode === CREATE && (
         <Form
           interviewers={interviewers}
-          onSave={() => console.log("Clicked onSave")}
+          onSave={save}
           onCancel={() => back()}
         />
       )}
