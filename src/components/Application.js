@@ -50,12 +50,13 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment,
     };
-    axios.put(`/api/appointments/${id}`, appointment).then(
+    return axios.put(`/api/appointments/${id}`, appointment).then((res) => {
+      console.log(res);
       setState({
         ...state,
         appointments,
-      })
-    );
+      });
+    });
   }
 
   // get appointments for a day
