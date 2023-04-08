@@ -2,7 +2,7 @@
  *
  * @param {object} state
  * @param {string} day
- * @returns appointments as object
+ * @returns appointments as an array of objects
  */
 export function getAppointmentsForDay(state, day) {
   // result to return at end
@@ -30,7 +30,7 @@ export function getAppointmentsForDay(state, day) {
 /**
  *@param {object} state
  * @param {string} day
- * @returns interviewers as object
+ * @returns interviewers as array of objects
  */
 export function getInterviewersForDay(state, day) {
   // result to return at end
