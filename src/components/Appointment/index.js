@@ -7,7 +7,7 @@ import Show from "./Show";
 import Form from "./Form";
 
 const Appointment = (props) => {
-  const { time, interview, interviewers } = props;
+  const { id, time, interview, interviewers, bookInterview } = props;
   // modes and custom hook
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -19,6 +19,7 @@ const Appointment = (props) => {
       student: name,
       interviewer,
     };
+    bookInterview(id, interview);
   }
 
   return (
