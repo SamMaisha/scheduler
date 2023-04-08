@@ -4,7 +4,11 @@ import axios from "axios";
 import "components/Application.scss";
 import DayList from "./Daylist";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterviewersForDay,
+  getInterview,
+} from "helpers/selectors";
 
 ///////////// COMPONENT //////////////////////
 
@@ -15,10 +19,6 @@ export default function Application(props) {
     appointments: {},
     interviewers: {},
   });
-  // aray to hold list of appointments for a day
-  let dailyAppointments = [];
-
-  const setDay = (day) => setState({ ...state, day });
 
   useEffect(() => {
     Promise.all([
@@ -34,10 +34,12 @@ export default function Application(props) {
       }));
     });
   }, []);
+  const setDay = (day) => setState({ ...state, day });
 
-  console.log(state.interviewers);
   // get appointments for a day
-  dailyAppointments = getAppointmentsForDay(state, state.day);
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  // get interviewers for a day
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const appointmentArr = Object.values(dailyAppointments).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -47,6 +49,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={dailyInterviewers}
       />
     );
   });
