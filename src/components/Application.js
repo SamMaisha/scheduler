@@ -37,8 +37,8 @@ export default function Application(props) {
   const setDay = (day) => setState({ ...state, day });
   /**
    *
-   * @param {number} id
-   * @param {*} interview
+   * @param {number} id -> appointment id
+   * @param {object} interview
    */
   function bookInterview(id, interview) {
     console.log(id, interview);
