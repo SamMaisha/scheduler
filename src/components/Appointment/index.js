@@ -7,7 +7,7 @@ import Show from "./Show";
 import Form from "./Form";
 
 const Appointment = (props) => {
-  const { time, interview } = props;
+  const { time, interview, interviewers } = props;
   // modes
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -28,7 +28,7 @@ const Appointment = (props) => {
       )}
       {mode === CREATE && (
         <Form
-          interviewers={[]}
+          interviewers={interviewers}
           onSave={() => console.log("Clicked onSave")}
           onCancel={() => back()}
         />
