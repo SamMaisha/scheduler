@@ -8,7 +8,8 @@ import Form from "./Form";
 import Status from "./Status";
 
 const Appointment = (props) => {
-  const { id, time, interview, interviewers, bookInterview } = props;
+  const { id, time, interview, interviewers, bookInterview, cancelInterview } =
+    props;
   // modes and custom hook
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -23,6 +24,11 @@ const Appointment = (props) => {
     };
     transition(SAVING);
     bookInterview(id, interview).then(() => transition(SHOW));
+  }
+
+  function deleteInterview() {
+    const interview = null;
+    console.log("delete");
   }
 
   return (
