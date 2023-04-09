@@ -15,6 +15,7 @@ const Appointment = (props) => {
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
+  const DELETING = "DELETING";
   const { mode, transition, back } = useVisualMode(interview ? SHOW : EMPTY);
 
   function save(name, interviewer) {
@@ -27,8 +28,8 @@ const Appointment = (props) => {
   }
 
   function deleteInterview() {
-    const interview = null;
-    console.log("delete");
+    transition(DELETING);
+    cancelInterview(id);
   }
 
   return (
@@ -51,6 +52,7 @@ const Appointment = (props) => {
         />
       )}
       {mode === SAVING && <Status message="Saving..." />}
+      {mode === DELETING && <Status message="Deleting..." />}
     </article>
   );
 };
