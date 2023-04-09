@@ -43,7 +43,7 @@ const Appointment = (props) => {
         <Show
           student={interview.student}
           interviewer={interview.interviewer}
-          onEdit={() => console.log("Clicked Edit")}
+          onEdit={() => transition(EDIT)}
           onDelete={() => transition(CONFIRM)}
         />
       )}
@@ -65,7 +65,7 @@ const Appointment = (props) => {
       {mode === EDIT && (
         <Form
           student={interview.student}
-          interviewer={interview.interviewer}
+          interviewer={interview.interviewer.id}
           interviewers={interviewers}
           onSave={save}
           onCancel={() => back()}
