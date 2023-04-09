@@ -58,7 +58,11 @@ export default function Application(props) {
   }
 
   function cancelInterview(id) {
-    console.log(id);
+    const appointment = {
+      ...state.appointments[id],
+      interview: null,
+    };
+    console.log(appointment);
   }
 
   // get appointments for a day
