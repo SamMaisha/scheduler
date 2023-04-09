@@ -40,7 +40,7 @@ const Appointment = (props) => {
           student={interview.student}
           interviewer={interview.interviewer}
           onEdit={() => console.log("Clicked Edit")}
-          onDelete={() => console.log("Clicked Delete")}
+          onDelete={deleteInterview}
         />
       )}
       {mode === CREATE && (
