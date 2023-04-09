@@ -29,7 +29,7 @@ const Appointment = (props) => {
 
   function deleteInterview() {
     transition(DELETING);
-    cancelInterview(id);
+    cancelInterview(id).then(() => transition(EMPTY));
   }
 
   return (
@@ -51,8 +51,8 @@ const Appointment = (props) => {
           onCancel={() => back()}
         />
       )}
-      {mode === SAVING && <Status message="Saving..." />}
-      {mode === DELETING && <Status message="Deleting..." />}
+      {mode === SAVING && <Status message="Saving" />}
+      {mode === DELETING && <Status message="Deleting" />}
     </article>
   );
 };
