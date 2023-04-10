@@ -31,7 +31,7 @@ export default function useApplicationData() {
    * @param {object} interview
    * @returns a promise and sets the state for appointments
    */
-  function bookInterview(id, interview) {
+  const bookInterview = function (id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -46,13 +46,13 @@ export default function useApplicationData() {
         appointments,
       });
     });
-  }
+  };
   /**
    *
    * @param {number} id
    * @returns a promise and sets the state for appointments
    */
-  function cancelInterview(id) {
+  const cancelInterview = function (id) {
     const appointment = {
       ...state.appointments[id],
       interview: null,
@@ -67,7 +67,7 @@ export default function useApplicationData() {
         appointments,
       });
     });
-  }
+  };
 
   return {
     state,
