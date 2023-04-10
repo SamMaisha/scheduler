@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { getAppointmentsForDay } from "helpers/selectors";
 
 export default function useApplicationData() {
   // state data
@@ -25,6 +26,21 @@ export default function useApplicationData() {
     });
   }, []);
   const setDay = (day) => setState({ ...state, day });
+  /**
+   *
+   * @param {string} day
+   * @returns number of spots remaining for day
+   */
+  const spotsRemaining = function (day) {
+    let spots;
+    const appointments = getAppointmentsForDay(state, day);
+    for (const appointment of appointments) {
+      if (appointment.interview === null) {
+        spots += 1;
+      }
+    }
+    return spots;
+  };
   /**
    *
    * @param {number} id -> appointment id
