@@ -43,13 +43,16 @@ export default function useApplicationData() {
             spots++;
           }
         });
-        console.log({
+        // return days for which spots was updated
+        return {
           ...day,
           spots,
-        });
+        };
       }
-      console.log("DAY", day);
+      // return days for which spots were not updates
+      return day;
     });
+    return updatedDays;
   };
   /**
    *
