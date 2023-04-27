@@ -69,11 +69,12 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-    updateSpots(id, appointments);
+    const days = updateSpots(id, appointments);
     return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
         appointments,
+        days,
       });
     });
   };
