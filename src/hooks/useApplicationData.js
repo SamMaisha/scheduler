@@ -30,16 +30,26 @@ export default function useApplicationData() {
    *
    * @param {string} day
    * @returns number of spots remaining for day
+   * days contains array for appointments
+   * check for interview null
    */
-  const spotsRemaining = function (day) {
-    let spots;
-    const appointments = getAppointmentsForDay(state, day);
-    for (const appointment of appointments) {
-      if (appointment.interview === null) {
-        spots += 1;
+  const updateSpots = function (id, appointments) {
+    // return days array, with updated day containing appt id
+    const updatedDays = state.days.map((day) => {
+      if (day.appointments.includes(id)) {
+        let spots = 0;
+        day.appointments.forEach((apptID) => {
+          if (appointments[apptID].interview === null) {
+            spots++;
+          }
+        });
+        console.log({
+          ...day,
+          spots,
+        });
       }
-    }
-    return spots;
+      console.log("DAY", day);
+    });
   };
   /**
    *
@@ -56,6 +66,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
+    updateSpots(id, appointments);
     return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
