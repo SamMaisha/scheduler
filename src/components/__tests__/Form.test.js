@@ -61,7 +61,16 @@ describe("Form", () => {
   });
 
   it("calls onSave function when the name is defined", () => {
-    const onSave = jest.fn();
+    const handleSave = jest.fn();
+    const { queryByText } = render(
+      <Form
+        interviewers={interviewers}
+        onSave={handleSave}
+        student="Lydia Miller-Jones"
+      />
+    );
+    const button = getByText("Save");
+    fireEvent.click(button);
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(queryByText(/please select an interviewer/i)).toBeNull();
