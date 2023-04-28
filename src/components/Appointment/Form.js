@@ -6,6 +6,7 @@ const Form = (props) => {
   const { interviewers, onSave, onCancel } = props;
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [error, setError] = useState("");
 
   const reset = () => {
     setStudent("");
@@ -16,6 +17,14 @@ const Form = (props) => {
   const cancel = () => {
     reset();
     onCancel();
+  };
+
+  const validate = () => {
+    if (student === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
+    props.onSave(student, interviewer);
   };
 
   return (
