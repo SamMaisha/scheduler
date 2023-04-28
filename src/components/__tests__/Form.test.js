@@ -4,6 +4,7 @@ import {
   cleanup,
   queryByText,
   fireEvent,
+  getByText,
 } from "@testing-library/react";
 import Form from "components/Appointment/Form";
 
@@ -33,48 +34,45 @@ describe("Form", () => {
   });
 
   it("validates that the student name is not blank", () => {
-    const handleSave = jest.fn();
+    const onSave = jest.fn();
     const { getByText } = render(
-      <Form interviewers={interviewers} onSave={handleSave} student="" />
+      <Form interviewers={interviewers} onSave={onSave} student="" />
     );
-    const button = getByText("Save");
-    fireEvent.click(button);
+    fireEvent.click(getByText("Save"));
 
     expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
 
   it("validates that the interviewer cannot be null", () => {
-    const handleSave = jest.fn();
+    const onSave = jest.fn();
     const { getByText } = render(
       <Form
-        interviewers={null}
-        onSave={handleSave}
+        interviewers={interviewers}
+        onSave={onSave}
         student="Lydia Miller-Jones"
       />
     );
-    const button = getByText("Save");
-    fireEvent.click(button);
+    fireEvent.click(getByText("Save"));
 
     expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
 
   it("calls onSave function when the name is defined", () => {
-    const handleSave = jest.fn();
-    const { queryByText } = render(
+    const onSave = jest.fn();
+    const { getByText, queryByText } = render(
       <Form
         interviewers={interviewers}
-        onSave={handleSave}
+        onSave={onSave}
         student="Lydia Miller-Jones"
+        interviewer={interviewers[0].id}
       />
     );
-    const button = getByText("Save");
-    fireEvent.click(button);
+    fireEvent.click(getByText("Save"));
 
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(queryByText(/please select an interviewer/i)).toBeNull();
-
     expect(onSave).toHaveBeenCalledTimes(1);
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
