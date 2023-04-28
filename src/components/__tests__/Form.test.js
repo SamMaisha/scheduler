@@ -45,7 +45,16 @@ describe("Form", () => {
   });
 
   it("validates that the interviewer cannot be null", () => {
-    const onSave = jest.fn();
+    const handleSave = jest.fn();
+    const { getByText } = render(
+      <Form
+        interviewers={null}
+        onSave={handleSave}
+        student="Lydia Miller-Jones"
+      />
+    );
+    const button = getByText("Save");
+    fireEvent.click(button);
 
     expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
