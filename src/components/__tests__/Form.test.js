@@ -33,18 +33,22 @@ describe("Form", () => {
   });
 
   it("validates that the student name is not blank", () => {
-    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+    const onSave = jest.fn();
 
+    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
 
   it("validates that the interviewer cannot be null", () => {
-    expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
+    const onSave = jest.fn();
 
+    expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
     expect(onSave).not.toHaveBeenCalled();
   });
 
   it("calls onSave function when the name is defined", () => {
+    const onSave = jest.fn();
+
     expect(queryByText(/student name cannot be blank/i)).toBeNull();
     expect(queryByText(/please select an interviewer/i)).toBeNull();
 
