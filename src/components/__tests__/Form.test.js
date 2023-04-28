@@ -5,6 +5,7 @@ import {
   queryByText,
   fireEvent,
   getByText,
+  getByPlaceholderText,
 } from "@testing-library/react";
 import Form from "components/Appointment/Form";
 
@@ -61,7 +62,7 @@ describe("Form", () => {
 
   it("can successfully save after trying to submit an empty student name", () => {
     const onSave = jest.fn();
-    const { getByText, getAllByPlaceholderText, queryByText } = render(
+    const { getByText, getByPlaceholderText, queryByText } = render(
       <Form interviewers={interviewers} onSave={onSave} interviewer={1} />
     );
     fireEvent.click(getByText("Save"));
