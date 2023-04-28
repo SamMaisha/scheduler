@@ -24,7 +24,11 @@ const Form = (props) => {
       setError("Student name cannot be blank");
       return;
     }
-    props.onSave(student, interviewer);
+    if (interviewer === null) {
+      setError("Please select an interviewer");
+      return;
+    }
+    onSave(student, interviewer);
   };
 
   return (
@@ -41,6 +45,7 @@ const Form = (props) => {
             data-testid="student-name-input"
           />
         </form>
+        <section className="appointment__validation">{error}</section>
         <InterviewerList
           interviewers={interviewers}
           value={interviewer}
@@ -52,7 +57,7 @@ const Form = (props) => {
           <Button danger onClick={() => cancel()}>
             Cancel
           </Button>
-          <Button confirm onClick={() => onSave(student, interviewer)}>
+          <Button confirm onClick={() => validate()}>
             Save
           </Button>
         </section>
