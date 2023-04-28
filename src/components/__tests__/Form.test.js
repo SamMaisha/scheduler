@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, queryByText } from "@testing-library/react";
 import Form from "components/Appointment/Form";
 
 afterEach(cleanup);
@@ -25,5 +25,25 @@ describe("Form", () => {
       <Form interviewers={interviewers} student="Lydia Miller-Jones" />
     );
     expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
+  });
+
+  it("validates that the student name is not blank", () => {
+    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+
+    expect(onSave).not.toHaveBeenCalled();
+  });
+
+  it("validates that the interviewer cannot be null", () => {
+    expect(getByText(/please select an interviewer/i)).toBeInTheDocument();
+
+    expect(onSave).not.toHaveBeenCalled();
+  });
+
+  it("calls onSave function when the name is defined", () => {
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+    expect(queryByText(/please select an interviewer/i)).toBeNull();
+
+    expect(onSave).toHaveBeenCalledTimes(1);
+    expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
   });
 });
