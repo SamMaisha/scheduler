@@ -4,6 +4,8 @@ import {
   cleanup,
   waitForElement,
   fireEvent,
+  getByText,
+  prettyDOM,
 } from "@testing-library/react";
 import Application from "components/Application";
 
@@ -21,6 +23,6 @@ describe("Application", () => {
 
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", () => {
     const { container } = render(<Application />);
-    console.log(container);
+    console.log(prettyDOM(container));
   });
 });
