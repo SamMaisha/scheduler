@@ -71,9 +71,13 @@ describe("Application", () => {
     // click on 'confirm' button to cancel appointment
     fireEvent.click(getByText(appointment, "Confirm"));
     // check that the element with text 'deleting' is displayed
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
     // wait until the element with the 'add' button shows up on the appointment
+    await waitForElement(() => getByAltText(appointment, "Add"));
     // check with the DayListItem with text 'Monday' has text '2 spots remaining'
-
-    console.log(prettyDOM(appointment));
+    const day = getAllByTestId(container, "day").find((day) =>
+      queryByText(day, "Monday")
+    );
+    expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 });
