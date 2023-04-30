@@ -54,9 +54,14 @@ describe("Application", () => {
   });
 
   it("loads data, cancels and interview and increases the spots remaining for Monday by 1", async () => {
-    // 1. Render the application
+    // render the application
     const { container } = render(<Application />);
-    // 2. wait until appointments load; test 'Archie Cohen' is displayed
+    // wait until appointments load; test 'Archie Cohen' is displayed
     await waitForElement(() => getByText(container, "Archie Cohen"));
+    // appointments array
+    const appointments = getAllByTestId(container, "appointment");
+    // get booked appointment
+    const appointment = appointments[1];
+    console.log(prettyDOM(appointment));
   });
 });
