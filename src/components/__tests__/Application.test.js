@@ -58,13 +58,12 @@ describe("Application", () => {
     const { container } = render(<Application />);
     // wait until appointments load; test 'Archie Cohen' is displayed
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    // appointments array
-    const appointments = getAllByTestId(container, "appointment");
-    // get first booked appointment for Monday
-    const appointment = appointments[1];
-    // click on the 'delete' button on the booked appointment
+    // click on the 'delete' button for the booked appointment
+    const appointment = getAllByTestId(container, "appointment").find(
+      (appointment) => queryByText(appointment, "Archie Cohen")
+    );
     fireEvent.click(getByAltText(appointment, "Delete"));
-    // expect confirmation message is shown
+    // check that confirmation message is shown
     expect(
       getByText(appointment, /are you sure you would like to delete/i)
     ).toBeInTheDocument();
@@ -81,3 +80,9 @@ describe("Application", () => {
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 });
+
+it("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {});
+
+// it("shows the save error when failing to save an appointment");
+
+// it("shows the delete error when failing to delete an existing appointment");
