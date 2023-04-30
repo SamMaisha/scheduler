@@ -81,7 +81,18 @@ describe("Application", () => {
   });
 });
 
-it("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {});
+it("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {
+  // render the application
+  // wait until appointments load; check for text 'Archie Cohen' being displayed
+  // click on the 'edit' button for booked appointment
+  // check that form appears with the student name and interviewer selected
+  // change information on the form
+  // click on 'save' button to save changes
+  // check that the confirmation message is shown
+  // click on 'confirm' button to save appointment
+  // check that appointment reflects the updated information
+  // check that the DayList Item with text Monday has text '1 spot remaining'
+});
 
 // it("shows the save error when failing to save an appointment");
 
