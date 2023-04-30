@@ -60,8 +60,15 @@ describe("Application", () => {
     await waitForElement(() => getByText(container, "Archie Cohen"));
     // appointments array
     const appointments = getAllByTestId(container, "appointment");
-    // get booked appointment
+    // get first booked appointment for Monday
     const appointment = appointments[1];
+    // click on the 'delete' button on the booked appointment
+    // expect confirmation message is shown
+    // click on 'confirm' button to cancel appointment
+    // check that the element with text 'deleting' is displayed
+    // wait until the element with the 'add' button shows up on the appointment
+    // check with the DayListItem with text 'Monday' has text '2 spots remaining'
+
     console.log(prettyDOM(appointment));
   });
 });
