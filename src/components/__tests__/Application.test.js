@@ -87,6 +87,10 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
   // wait until appointments load; check for text 'Archie Cohen' being displayed
   await waitForElement(() => getByText(container, "Archie Cohen"));
   // click on the 'edit' button for booked appointment
+  const appointment = getAllByTestId(container, "appointment").find(
+    (appointment) => queryByText(appointment, "Archie Cohen")
+  );
+  fireEvent.click(getByAltText(appointment, "Edit"));
   // check that form appears with the student name and interviewer selected
   // change information on the form
   // click on 'save' button to save changes
@@ -94,6 +98,7 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
   // click on 'confirm' button to save appointment
   // check that appointment reflects the updated information
   // check that the DayList Item with text Monday has text '1 spot remaining'
+  console.log(prettyDOM(appointment));
 });
 
 // it("shows the save error when failing to save an appointment");
