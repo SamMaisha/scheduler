@@ -92,10 +92,19 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
   );
   fireEvent.click(getByAltText(appointment, "Edit"));
   // check that form appears with the student name and interviewer selected
+  expect(getByPlaceholderText(appointment, /enter student name/i)).toHaveValue(
+    "Archie Cohen"
+  );
+  expect(getByText(appointment, "Tori Malcolm")).toBeInTheDocument();
   // change information on the form
+  fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+    target: { value: "Lydia Miller-Jones" },
+  });
+  fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
   // click on 'save' button to save changes
-  // check that the confirmation message is shown
-  // click on 'confirm' button to save appointment
+  fireEvent.click(getByText(appointment, "Save"));
+  // check that the element with the text 'Saving' is shown
+  expect(getByText(appointment, "Saving")).toBeInTheDocument();
   // check that appointment reflects the updated information
   // check that the DayList Item with text Monday has text '1 spot remaining'
   console.log(prettyDOM(appointment));
