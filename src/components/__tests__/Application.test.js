@@ -81,9 +81,11 @@ describe("Application", () => {
   });
 });
 
-it("loads data, edits an interview and keeps the spots remaining for Monday the same", () => {
+it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
   // render the application
+  const { container } = render(<Application />);
   // wait until appointments load; check for text 'Archie Cohen' being displayed
+  await waitForElement(() => getByText(container, "Archie Cohen"));
   // click on the 'edit' button for booked appointment
   // check that form appears with the student name and interviewer selected
   // change information on the form
