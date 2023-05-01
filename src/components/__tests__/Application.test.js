@@ -106,8 +106,14 @@ it("loads data, edits an interview and keeps the spots remaining for Monday the 
   // check that the element with the text 'Saving' is shown
   expect(getByText(appointment, "Saving")).toBeInTheDocument();
   // check that appointment reflects the updated information
+  await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+  expect(getByText(appointment, "Lydia Miller-Jones")).toBeInTheDocument();
+  expect(getByText(appointment, "Sylvia Palmer")).toBeInTheDocument();
   // check that the DayList Item with text Monday has text '1 spot remaining'
-  console.log(prettyDOM(appointment));
+  const day = getAllByTestId(container, "day").find((day) =>
+    queryByText(day, "Monday")
+  );
+  expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
 });
 
 // it("shows the save error when failing to save an appointment");
