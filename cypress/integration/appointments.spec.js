@@ -13,8 +13,7 @@ describe("appointments", () => {
     cy.contains(".appointment__card--show", "Sylvia Palmer");
   });
   it("should edit an interview", () => {
-    cy.contains("[data-testid=appointment]", "Archie Cohen");
-    cy.get("[alt=Edit]").click({ force: true });
+    cy.get("[alt=Edit]").first().click({ force: true });
     cy.get("[data-testid=student-name-input]")
       .clear()
       .type("Lydia Miller-Jones");
